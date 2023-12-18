@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="{% url 'product_list' %}"> Product List</a>
+<a href="{% url 'product_create' %}"> Create Product</a>
+   <form method="POST">
+        {% csrf_token %}
+        <input value='{{ product.name}}' type="text" name="name">
+        <input value='{{ product.price}}' type="number" name="price">
+        <input value='{{ product.quantity}}' type="number" name="quantity">
+        <select name="category">
+        {% for category in category_list %}
+        <option value="{{ category.pk }}"
+                {% if category.pk == product.category.pk %}
+                    selected
+                {% endif %}>
+            {{ category }}
+        </option>
+        {% endfor %}
+    </select>
+
+        <input type="submit" value="Update">
+
+    </form>
+</body>
+</html>

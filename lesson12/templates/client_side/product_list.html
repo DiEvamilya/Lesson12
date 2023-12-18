@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Product</h1>
+<a href="{% url 'product_create' %}"> Create Product</a>
+<div style="width:400px; margin: 20px; margin-top: 50px;">
+
+    <p>Магазины: {% for shop in shop_list %}
+        <a href="{% url 'shop_product' shop.slug %}">{{ shop|linebreaks }}</a>
+
+        {% endfor %}</p>
+
+
+    <p> Категории: {% for category in category_list %}
+        <a href="{% url 'product_category' category.slug %}">{{ category }}</a>
+    {% endfor %}
+    </p>
+
+    {% for product in product_list %}
+        <p>
+            {{ product.name }} -
+            <a href="{% url 'product_detail' product.slug %}">Detail</a>
+            <a href="{% url 'product_update' product.slug %}">Update</a>
+            <a href="{% url 'product_delete' product.slug %}">Delete</a>
+        </p>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

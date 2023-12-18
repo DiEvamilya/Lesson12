@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'product_list' %}">  Product List </a>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="name">
+        <input type="number" name="price">
+        <input type="number" name="quantity">
+
+        <select name="category">
+            {% for category in category_list %}
+            <option value="{{ category.pk }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="shop_name">
+            {% for shop_name in shop_list %}
+            <option value="{{ shop_name.slug }}">{{ shop_name }}</option>
+            {% endfor %}
+        </select>
+
+
+        <input type="submit" value="Create">
+
+    </form>
+</body>
+</html>
